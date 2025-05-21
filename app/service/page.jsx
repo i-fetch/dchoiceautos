@@ -106,16 +106,16 @@ export default function ShippingPage() {
                 title: "Delivery",
                 description: "Your order is delivered to your doorstep.",
               },
-            ].map((step) => (
-              <div key={step.step} className="relative">
+            ].map((stepObj, idx) => (
+              <div key={stepObj.step} className="relative">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4">
-                    {step.step}
+                    {stepObj.step}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-center text-muted-foreground">{step.description}</p>
+                  <h3 className="text-lg font-bold mb-2">{stepObj.title}</h3>
+                  <p className="text-center text-sm text-muted-foreground">{stepObj.description}</p>
                 </div>
-                {step.step < 4 && (
+                {stepObj.step < 4 && (
                   <div className="hidden md:block absolute top-8 left-full w-full transform -translate-x-1/2">
                     <ArrowRight className="h-6 w-6 text-primary" />
                   </div>

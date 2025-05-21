@@ -18,72 +18,80 @@ export default function SparePartsPage() {
     { id: "interior", name: "Interior" },
   ]
 
-  // Sample parts data
-  const parts = [
-    {
-      id: 1,
-      name: "Premium Brake Pads",
-      price: "$89.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "brakes",
-      badge: "Best Seller",
-      discount: "15% OFF",
-    },
-    {
-      id: 2,
-      name: "Engine Oil Filter",
-      price: "$24.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "engine",
-      badge: "New Arrival",
-    },
-    {
-      id: 3,
-      name: "Suspension Coil Springs",
-      price: "$149.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "suspension",
-      discount: "10% OFF",
-    },
-    {
-      id: 4,
-      name: "LED Headlight Assembly",
-      price: "$299.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "electrical",
-      badge: "Premium",
-    },
-    {
-      id: 5,
-      name: "Front Bumper Cover",
-      price: "$189.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "body",
-    },
-    {
-      id: 6,
-      name: "Leather Seat Covers",
-      price: "$129.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "interior",
-      badge: "Limited Stock",
-    },
-    {
-      id: 7,
-      name: "Spark Plug Set",
-      price: "$49.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "engine",
-    },
-    {
-      id: 8,
-      name: "Brake Rotors (Pair)",
-      price: "$119.99",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "brakes",
-      discount: "20% OFF",
-    },
-  ]
+// Sample parts data
+const parts = [
+  {
+    id: 1,
+    name: "Premium Brake Pads",
+    price: "$89.99",
+    image: "/spare-parts/premium-brake-pads.png",
+    category: "brakes",
+    badge: "Best Seller",
+    discount: "15% OFF",
+    brand: "Brembo",
+  },
+  {
+    id: 2,
+    name: "Engine Oil Filter",
+    price: "$24.99",
+    image: "/spare-parts/high-performance-oil-filter.png",
+    category: "engine",
+    badge: "New Arrival",
+    brand: "Bosch",
+  },
+  {
+    id: 3,
+    name: "Suspension Coil Springs",
+    price: "$149.99",
+    image: "/spare-parts/magwheels.jpg", // Closest match for suspension
+    category: "suspension",
+    discount: "10% OFF",
+    brand: "Monroe",
+  },
+  {
+    id: 4,
+    name: "LED Headlight Assembly",
+    price: "$299.99",
+    image: "/spare-parts/head-light.jpg",
+    category: "electrical",
+    badge: "Premium",
+    brand: "Denso",
+  },
+  {
+    id: 5,
+    name: "Front Bumper Cover",
+    price: "$189.99",
+    image: "/spare-parts/radiator.png", // Closest match for body/bumper
+    category: "body",
+    brand: "OEM",
+  },
+  {
+    id: 6,
+    name: "Leather Seat Covers",
+    price: "$129.99",
+    image: "/spare-parts/custom-seats-covers.png",
+    category: "interior",
+    badge: "Limited Stock",
+    brand: "OEM",
+  },
+  {
+    id: 7,
+    name: "Spark Plug Set",
+    price: "$49.99",
+    image: "/spare-parts/spark-plug-set.png",
+    category: "engine",
+    brand: "Denso",
+  },
+  {
+    id: 8,
+    name: "Brake Rotors (Pair)",
+    price: "$119.99",
+    image: "/spare-parts/brake-rotors-paired.png",
+    category: "brakes",
+    discount: "20% OFF",
+    brand: "Brembo",
+  },
+]
 
   return (
     <div>
@@ -97,31 +105,6 @@ export default function SparePartsPage() {
         </div>
       </section>
 
-      {/* Search and Filter */}
-      <section className="py-8 bg-slate-100 dark:bg-slate-800">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input placeholder="Search for parts..." className="pl-10" />
-            </div>
-            <div className="flex gap-2">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Filter className="h-4 w-4" />
-                Filters
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                Vehicle Model
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                Sort By
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Parts Catalog */}
       <section className="py-12">
@@ -176,7 +159,7 @@ export default function SparePartsPage() {
             {/* Parts Grid */}
             <div className="lg:col-span-3">
               <Tabs defaultValue="all" className="w-full">
-                <TabsList className="mb-6">
+                <TabsList className="container mx-auto border mb-6">
                   <TabsTrigger value="all">All Parts</TabsTrigger>
                   <TabsTrigger value="featured">Featured</TabsTrigger>
                   <TabsTrigger value="bestsellers">Best Sellers</TabsTrigger>
@@ -247,21 +230,31 @@ export default function SparePartsPage() {
         </div>
       </section>
 
-      {/* Featured Brands */}
-      <section className="py-12 bg-slate-100 dark:bg-slate-800">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">Featured Brands</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((brand) => (
-              <div key={brand} className="bg-white dark:bg-slate-900 rounded-lg p-6 flex items-center justify-center">
-                <div className="w-24 h-24 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center">
-                  <span className="text-muted-foreground">Brand {brand}</span>
-                </div>
-              </div>
-            ))}
+ {/* Featured Brands */}
+<section className="py-12 bg-slate-100 dark:bg-slate-800">
+  <div className="container mx-auto px-4">
+    <h2 className="text-2xl font-bold mb-8 text-center">Featured Brands</h2>
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      {["OEM", "Bosch", "Denso", "Brembo", "Monroe"].map((brand) => (
+        <div
+          key={brand}
+          className="p-6 flex flex-col items-center justify-center"
+        >
+          <div className="w-24 h-24 flex items-center justify-center mb-3 overflow-hidden">
+            <Image
+              src={`/${brand.toLowerCase()}.png`}
+              alt={brand}
+              width={300}
+              height={300}
+              className="object-contain"
+            />
           </div>
+          <span className="text-muted-foreground font-medium">{brand}</span>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
     </div>
   )
 }
@@ -279,8 +272,8 @@ function PartCard({ part }) {
         <p className="text-primary font-medium mb-3">{part.price}</p>
         <div className="flex gap-2">
           <Button className="flex-1 h-9">
-            <ShoppingCart className="h-4 w-4 mr-2" />
-            Add to Cart
+            {/* <ShoppingCart className="h-4 w-4 mr-2" /> */}
+            View details
           </Button>
           <Button variant="outline" size="icon" className="h-9 w-9">
             <svg

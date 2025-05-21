@@ -2,9 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Car, Wrench, Truck, ShieldCheck, Clock, ThumbsUp, Award, ChevronRight } from "lucide-react"
+import FeatureCars from "@/components/Features/FeatureCars"
+import PopularParts from "@/components/PopularParts/PopularParts"
+import ShopPartCatalog from "@/components/ShopPartCatalog/ShopPartCatalog"
 
 export default function Home() {
   return (
@@ -94,108 +95,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Cars Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">Featured Cars</h2>
-              <p className="text-lg text-muted-foreground">Explore our selection of premium vehicles</p>
-            </div>
-            <Button className="mt-4 md:mt-0" asChild>
-              <Link href="/cars">View All Cars</Link>
-            </Button>
-          </div>
+      {/* ShopPartCatalog */}
+      <ShopPartCatalog />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                id: 1,
-                name: "Luxury Sedan 2025",
-                price: "$75,000",
-                image: "/placeholder.svg?height=300&width=500",
-                badge: "New Arrival",
-              },
-              {
-                id: 2,
-                name: "Premium SUV",
-                price: "$85,000",
-                image: "/placeholder.svg?height=300&width=500",
-                badge: "Best Seller",
-              },
-              {
-                id: 3,
-                name: "Sports Coupe",
-                price: "$95,000",
-                image: "/placeholder.svg?height=300&width=500",
-                badge: "Limited Edition",
-              },
-            ].map((car) => (
-              <Card key={car.id} className="overflow-hidden car-card">
-                <div className="relative h-[200px] overflow-hidden">
-                  <Image src={car.image || "/placeholder.svg"} alt={car.name} fill className="object-cover" />
-                  {car.badge && <Badge className="absolute top-2 right-2 bg-primary">{car.badge}</Badge>}
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{car.name}</h3>
-                  <p className="text-primary font-semibold text-lg mb-4">{car.price}</p>
-                  <Button className="w-full">View Details</Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Featured Cars Section */}
+      <FeatureCars />
 
       {/* Popular Parts Section */}
-      <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">Popular Spare Parts</h2>
-              <p className="text-lg text-muted-foreground">High-quality parts for all makes and models</p>
-            </div>
-            <Button className="mt-4 md:mt-0" asChild>
-              <Link href="/spare-parts">View All Parts</Link>
-            </Button>
-          </div>
-
-          <Tabs defaultValue="engine" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="engine">Engine</TabsTrigger>
-              <TabsTrigger value="brakes">Brakes</TabsTrigger>
-              <TabsTrigger value="suspension">Suspension</TabsTrigger>
-              <TabsTrigger value="electrical">Electrical</TabsTrigger>
-            </TabsList>
-
-            {["engine", "brakes", "suspension", "electrical"].map((category) => (
-              <TabsContent key={category} value={category} className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[1, 2, 3, 4].map((item) => (
-                    <Card key={item} className="overflow-hidden">
-                      <div className="relative h-[150px] overflow-hidden">
-                        <Image
-                          src={`/placeholder.svg?height=150&width=300`}
-                          alt={`${category} part ${item}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <CardContent className="p-4">
-                        <h3 className="font-semibold mb-1">{`${category.charAt(0).toUpperCase() + category.slice(1)} Part ${item}`}</h3>
-                        <p className="text-primary font-medium mb-2">${(Math.random() * 500 + 50).toFixed(2)}</p>
-                        <Button size="sm" className="w-full">
-                          Add to Cart
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </section>
+      <PopularParts />
 
       {/* Why Choose Us Section */}
       <section className="py-16 md:py-24">
