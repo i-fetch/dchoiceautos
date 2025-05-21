@@ -182,7 +182,7 @@ export default function ShippingPage() {
 
             <div className="relative h-[400px] rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/parallax-03-2a9544a4.jpg"
                 alt="Global Shipping Map"
                 fill
                 className="object-cover"
