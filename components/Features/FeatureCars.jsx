@@ -1,10 +1,12 @@
+'use client'
 import React from 'react'
 import { Card, CardContent } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { Badge } from '../ui/badge'
-import { cars } from '../../lib/Cars' // Import the cars array
+import { useToast } from "@/hooks/use-toast"
+import { cars } from '../../lib/Cars'
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +16,16 @@ import {
 } from '../ui/carousel'
 
 const FeatureCars = () => {
+  const { toast } = useToast();
+
+  const handleNonPremiumClick = () => {
+    toast({
+      title: "Premium Feature",
+      description: "You must be a premium user to view car details.",
+      variant: "destructive", // optional: choose styling variant
+    })
+  }
+
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -27,7 +39,6 @@ const FeatureCars = () => {
           </Button>
         </div>
 
-        {/* Carousel for Car Cards */}
         <Carousel autoPlay loop>
           <CarouselContent className="-ml-2 md:-ml-4">
             {cars.map((car) => (
@@ -43,14 +54,14 @@ const FeatureCars = () => {
                   <CardContent className="p-6">
                     <h3 className="text-lg font-bold mb-2">{car.name}</h3>
                     <p className="text-primary font-semibold text-lg mb-4">{car.price}</p>
-                    <Button className="w-full">View Details</Button>
+                    <Button className="w-full" onClick={handleNonPremiumClick}>
+                      View Details
+                    </Button>
                   </CardContent>
                 </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* <CarouselPrevious /> */}
-          {/* <CarouselNext /> */}
         </Carousel>
       </div>
     </section>
