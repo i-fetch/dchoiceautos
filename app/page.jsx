@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,35 +19,47 @@ import FeatureCars from '@/components/Features/FeatureCars';
 import PopularParts from '@/components/PopularParts/PopularParts';
 import ShopPartCatalog from '@/components/ShopPartCatalog/ShopPartCatalog';
 
-const fadeUp = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: 'easeOut' },
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const Home = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; // Prevent mismatch by rendering only on client
+
   return (
     <div>
       {/* Hero Section */}
-      <motion.section
-        className="hero-section text-white"
-        {...fadeUp}
-        transition={{ duration: 0.8 }}
-      >
+      <section className="hero-section text-white">
         <div className="container mx-auto px-4 py-24 md:py-32">
           <motion.div
             className="max-w-3xl"
-            initial="initial"
-            animate="animate"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUpVariant}
             transition={{ staggerChildren: 0.2 }}
           >
-            <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" {...fadeUp}>
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+              variants={fadeUpVariant}
+              transition={{ duration: 0.6 }}
+            >
               Premium Cars & Parts at Your Fingertips
             </motion.h1>
-            <motion.p className="text-lg md:text-xl mb-8 text-gray-200" {...fadeUp}>
+            <motion.p
+              className="text-lg md:text-xl mb-8 text-gray-200"
+              variants={fadeUpVariant}
+              transition={{ duration: 0.6 }}
+            >
               Discover our extensive collection of luxury vehicles and high-quality spare parts with reliable shipping services.
             </motion.p>
-            <motion.div className="flex flex-wrap gap-4" {...fadeUp}>
+            <motion.div className="flex flex-wrap gap-4" variants={fadeUpVariant}>
               <Button size="lg" asChild>
                 <Link href="/login">Get Started </Link>
               </Button>
@@ -58,20 +71,33 @@ const Home = () => {
               >
                 <Link href="/spare-parts">Browse Parts</Link>
               </Button>
-              
             </motion.div>
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" {...fadeUp}>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUpVariant}
+              transition={{ duration: 0.6 }}
+            >
               Our Premium Services
             </motion.h2>
-            <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto" {...fadeUp}>
+            <motion.p
+              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUpVariant}
+              transition={{ duration: 0.6 }}
+            >
               We offer a comprehensive range of automotive services to meet all your needs
             </motion.p>
           </div>
@@ -97,7 +123,14 @@ const Home = () => {
                 href: '/shipping',
               },
             ].map((service, index) => (
-              <motion.div key={index} {...fadeUp}>
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUpVariant}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
                 <Card className="feature-card transition-all duration-300">
                   <CardContent className="pt-6">
                     <div className="rounded-full bg-primary/10 p-4 w-16 h-16 flex items-center justify-center mb-4">
@@ -128,7 +161,13 @@ const Home = () => {
       {/* Why Choose Us Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <motion.div className="text-center mb-12" {...fadeUp}>
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUpVariant}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AutoElite</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We are committed to providing exceptional service and products to our customers
@@ -145,8 +184,11 @@ const Home = () => {
               <motion.div
                 key={index}
                 className="text-center p-6 border rounded-lg hover:shadow-md transition-shadow"
-                {...fadeUp}
-                transition={{ duration: 0.4 + index * 0.2 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUpVariant}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <div className="flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
@@ -160,10 +202,14 @@ const Home = () => {
       {/* CTA Section */}
       <motion.section
         className="bg-primary text-white py-16"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0, scale: 0.95 },
+          visible: { opacity: 1, scale: 1 },
+        }}
+        transition={{ duration: 0.6 }}
       >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Enhance Your Driving Experience?</h2>
@@ -188,7 +234,7 @@ const Home = () => {
               className="bg-transparent border-white text-white hover:bg-white hover:text-primary"
               asChild
             >
-              <Link href="/auth/login">Compare Cars</Link>
+              <Link href="/login">Compare Cars</Link>
             </Button>
           </div>
         </div>
