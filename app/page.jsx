@@ -228,14 +228,7 @@ const Home = () => {
             <Button size="lg" className="bg-white text-primary hover:bg-gray-100" asChild>
               <Link href="/spare-parts">Browse Parts</Link>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-transparent border-white text-white hover:bg-white hover:text-primary"
-              asChild
-            >
-              <Link href="/login">Compare Cars</Link>
-            </Button>
+            
           </div>
         </div>
       </motion.section>

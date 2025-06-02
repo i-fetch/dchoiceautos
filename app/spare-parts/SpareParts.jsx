@@ -59,75 +59,43 @@ export default function SpareParts({ categories, parts, brands }) {
       {/* Parts Catalog */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:grid lg:grid-cols-4 gap-6">
-            {/* Categories Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-slate-900 rounded-lg shadow p-4 md:p-6 sticky top-4">
-                <h3 className="text-lg font-bold mb-4">Categories</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="#all"
-                      className="block py-2 px-3 bg-primary/10 text-primary rounded-md font-medium hover:bg-primary/20 transition-colors"
-                    >
-                      All Parts
-                    </Link>
-                  </li>
-                  {categories.map((category) => (
-                    <li key={category.id}>
-                      <Link
-                        href={`#${category.id}`}
-                        className="block py-2 px-3 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors"
-                      >
-                        {category.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <motion.div
+            ref={gridRef}
+            variants={gridVariants}
+            initial="hidden"
+            animate={isGridInView ? "visible" : "hidden"}
+            className="w-full"
+          >
+            <Tabs defaultValue="all" className="w-full">
+              <TabsList className="flex flex-wrap justify-start md:justify-center border mb-6">
+                <TabsTrigger value="all">All Parts</TabsTrigger>
+                <TabsTrigger value="featured">Featured</TabsTrigger>
+                <TabsTrigger value="bestsellers">Best Sellers</TabsTrigger>
+                <TabsTrigger value="new">New Arrivals</TabsTrigger>
+              </TabsList>
 
-            {/* Parts Grid */}
-            <motion.div
-              ref={gridRef}
-              variants={gridVariants}
-              initial="hidden"
-              animate={isGridInView ? "visible" : "hidden"}
-              className="lg:col-span-3"
-            >
-              <Tabs defaultValue="all" className="w-full">
-                <TabsList className="flex flex-wrap justify-start md:justify-center border mb-6">
-                  <TabsTrigger value="all">All Parts</TabsTrigger>
-                  <TabsTrigger value="featured">Featured</TabsTrigger>
-                  <TabsTrigger value="bestsellers">Best Sellers</TabsTrigger>
-                  <TabsTrigger value="new">New Arrivals</TabsTrigger>
-                </TabsList>
-
-                {["all", "featured", "bestsellers", "new"].map((tab) => (
-                  <TabsContent key={tab} value={tab} className="mt-0">
-                    <motion.div
-                      variants={gridVariants}
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
-                    >
-                      {parts
-                        .filter((part) => {
-                          if (tab === "all") return true;
-                          if (tab === "featured") return part.badge === "Premium" || part.discount;
-                          if (tab === "bestsellers") return part.badge === "Best Seller";
-                          if (tab === "new") return part.badge === "New Arrival";
-                          return false;
-                        })
-                        .map((part) => (
-                          <PartCard key={part.id} part={part} />
-                        ))}
-                    </motion.div>
-                  </TabsContent>
-                ))}
-              </Tabs>
-
-             
-            </motion.div>
-          </div>
+              {["all", "featured", "bestsellers", "new"].map((tab) => (
+                <TabsContent key={tab} value={tab} className="mt-0">
+                  <motion.div
+                    variants={gridVariants}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+                  >
+                    {parts
+                      .filter((part) => {
+                        if (tab === "all") return true;
+                        if (tab === "featured") return part.badge === "Premium" || part.discount;
+                        if (tab === "bestsellers") return part.badge === "Best Seller";
+                        if (tab === "new") return part.badge === "New Arrival";
+                        return false;
+                      })
+                      .map((part) => (
+                        <PartCard key={part.id} part={part} />
+                      ))}
+                  </motion.div>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </motion.div>
         </div>
       </section>
 

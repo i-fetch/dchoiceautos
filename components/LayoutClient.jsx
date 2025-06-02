@@ -8,7 +8,7 @@ import "animate.css/animate.compat.css";
 
 export default function LayoutClient({ children }) {
   const pathname = usePathname();
-  const authRoutes = ["/login", "/signup", "/dashboard"];
+  const authRoutes = ["/login", "/signup", "/dashboard","/dashboard/car-update","/dashboard/spare-parts"];
   const isAuthPage = authRoutes.includes(pathname);
 
   return (

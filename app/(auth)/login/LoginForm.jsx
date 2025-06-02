@@ -1,22 +1,26 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from '@/hooks/use-toast';
 import { Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 
 const LoginForm = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const router = useRouter();
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -40,32 +44,49 @@ const LoginForm = () => {
 
     if (!password) {
       newErrors.password = 'Password is required';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      // Simulated login success
-      toast({
-        title: 'Login Successful',
-        description: 'Welcome back!',
-        variant: 'default',
-        duration: 3000,
-      });
-    } else {
+
+    if (!validateForm()) {
       toast({
         title: 'Login Failed',
         description: 'Please check the fields and try again.',
         variant: 'destructive',
         duration: 3000,
       });
+      return;
     }
+
+    setLoading(true);
+
+    // Sign in with next-auth credentials provider
+    const res = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (res.error) {
+      toast({
+        title: 'Login Failed',
+        description: res.error || 'Invalid credentials.',
+        variant: 'destructive',
+      });
+    } else if (res.ok) {
+      toast({
+        title: 'Login Successful',
+        description: 'Welcome back!',
+      });
+      router.push('/dashboard'); // Update to your post-login page
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -94,6 +115,7 @@ const LoginForm = () => {
                     className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="email"
                   />
                 </div>
                 {errors.email && (
@@ -112,6 +134,7 @@ const LoginForm = () => {
                     className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password"
                   />
                 </div>
                 {errors.password && (
@@ -119,27 +142,15 @@ const LoginForm = () => {
                 )}
               </motion.div>
 
-              <motion.div variants={fieldVariants} className="flex justify-between items-center">
-                <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
-                  Forgot Password?
-                </Link>
-              </motion.div>
-
+             
               <motion.div variants={fieldVariants}>
-                <Button type="submit" className="w-full bg-primary">
-                  Login
+                <Button type="submit" className="w-full bg-primary" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Login'}
                 </Button>
               </motion.div>
             </form>
 
-            <motion.div variants={fieldVariants} className="mt-4 text-center">
-              <p className="text-sm text-muted-foreground">
-                Don&apos;t have an account?{' '}
-                <Link href="/signup" className="text-primary hover:underline">
-                  Sign Up
-                </Link>
-              </p>
-            </motion.div>
+          
           </CardContent>
         </Card>
       </motion.div>
