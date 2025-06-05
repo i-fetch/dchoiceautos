@@ -203,8 +203,12 @@ function CarCard({ car, variants }) {
             </div>
           )}
           <h3 className="text-xl font-bold mb-2">{car.name}</h3>
-          <p className="text-primary font-semibold text-lg mb-3">{car.price}</p>
-          {car.features && (
+<p className="text-primary font-semibold text-lg mb-3">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "NGN",
+            }).format(car.price)}
+          </p>          {car.features && (
             <div className="grid grid-cols-2 gap-2 mb-4">
               {car.features.map((feature, index) => (
                 <span

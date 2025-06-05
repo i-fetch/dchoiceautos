@@ -10,7 +10,7 @@ export default function AboutPage() {
       <section className="bg-slate-900 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">About AutoElite</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">About Dchoice</h1>
             <p className="text-lg text-gray-300 mb-6">
               Your trusted partner in the automotive industry, providing premium cars, quality spare parts, and reliable
               shipping services.
@@ -26,7 +26,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Founded in 2005, AutoElite began as a small car dealership with a vision to revolutionize the automotive
+                Founded in 2005, Dchoice began as a small car dealership with a vision to revolutionize the automotive
                 industry by providing premium vehicles and exceptional customer service.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
@@ -35,14 +35,14 @@ export default function AboutPage() {
                 satisfaction has made us a trusted name in the industry.
               </p>
               <p className="text-lg text-muted-foreground">
-                Today, AutoElite serves thousands of customers worldwide, maintaining the same dedication to excellence
+                Today, Dchoice serves thousands of customers worldwide, maintaining the same dedication to excellence
                 that has been our hallmark since day one.
               </p>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="AutoElite Headquarters"
+                src="/headquarter.jpg?height=400&width=600"
+                alt="Dchoice Headquarters"
                 fill
                 className="object-cover"
               />
@@ -175,12 +175,12 @@ export default function AboutPage() {
               {
                 name: "John Smith",
                 position: "CEO & Founder",
-                image: "/placeholder.svg?height=300&width=300",
+                image: "/john.jpg?height=300&width=300",
               },
               {
                 name: "Sarah Johnson",
                 position: "COO",
-                image: "/placeholder.svg?height=300&width=300",
+                image: "/sarah.jpg?height=300&width=300",
               },
               {
                 name: "Michael Brown",
@@ -190,7 +190,7 @@ export default function AboutPage() {
               {
                 name: "Emily Davis",
                 position: "Customer Service Director",
-                image: "/placeholder.svg?height=300&width=300",
+                image: "/emily.jpg?height=300&width=300",
               },
             ].map((member, index) => (
               <div key={index} className="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-md">
@@ -225,7 +225,7 @@ export default function AboutPage() {
                   {
                     year: "2005",
                     title: "Company Founded",
-                    description: "AutoElite was established as a small car dealership with a vision for excellence.",
+                    description: "Dchoice was established as a small car dealership with a vision for excellence.",
                   },
                   {
                     year: "2010",
@@ -289,7 +289,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="bg-primary text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Join the AutoElite Family</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Join the Dchoice Family</h2>
           <p className="text-lg mb-6 max-w-2xl mx-auto">
             Experience the difference of working with a company that values quality, integrity, and customer
             satisfaction.

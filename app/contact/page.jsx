@@ -85,8 +85,8 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-lg font-bold mb-2">Email</h3>
                 <p className="text-muted-foreground mb-2">Send us an email</p>
-                <a href="mailto:info@autoelite.com" className="text-primary hover:underline">
-                  info@autoelite.com
+                <a href="mailto:info@Dchoice.com" className="text-primary hover:underline">
+                  info@Dchoice.com
                 </a>
               </CardContent>
             </Card>
@@ -254,7 +254,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="mt-4 bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
-                <h3 className="font-semibold mb-2">AutoElite Headquarters</h3>
+                <h3 className="font-semibold mb-2">Dchoice Headquarters</h3>
                 <address className="not-italic text-muted-foreground">
                   123 Auto Boulevard
                   <br />
@@ -286,7 +286,7 @@ export default function ContactPage() {
               {
                 question: "How can I schedule a test drive?",
                 answer:
-                  "You can schedule a test drive by calling us at +1 (800) 123-4567, emailing us at info@autoelite.com, or by filling out the contact form on this page.",
+                  "You can schedule a test drive by calling us at +1 (800) 123-4567, emailing us at info@Dchoice.com, or by filling out the contact form on this page.",
               },
               {
                 question: "Do you offer financing options?",

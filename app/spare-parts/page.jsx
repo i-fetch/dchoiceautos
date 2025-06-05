@@ -1,93 +1,52 @@
-import SpareParts from "./SpareParts";
+// app/spareparts/page.jsx
+import { connectToDB } from '@/lib/connectDB';
+import SparePart from '@/models/SparePartmodel';
+import SpareParts from './SpareParts';
 
-// Sample parts categories
-const categories = [
-  { id: "engine", name: "Engine Parts" },
-  { id: "brakes", name: "Brake System" },
-  { id: "suspension", name: "Suspension" },
-  { id: "electrical", name: "Electrical" },
-  { id: "body", name: "Body Parts" },
-  { id: "interior", name: "Interior" },
-];
+export default async function SparePartsPage({ searchParams }) {
+  const page = Number(searchParams?.page) || 1;
+  const limit = 9;
 
-// Sample parts data
-const parts = [
-  {
-    id: 1,
-    name: "Premium Brake Pads",
-    price: "$89.99",
-    image: "/spare-parts/premium-brake-pads.png",
-    category: "brakes",
-    badge: "Best Seller",
-    discount: "15% OFF",
-    brand: "Brembo",
-  },
-  {
-    id: 2,
-    name: "Engine Oil Filter",
-    price: "$24.99",
-    image: "/spare-parts/high-performance-oil-filter.png",
-    category: "engine",
-    badge: "New Arrival",
-    brand: "Bosch",
-  },
-  {
-    id: 3,
-    name: "Suspension Coil Springs",
-    price: "$149.99",
-    image: "/spare-parts/magwheels.jpg",
-    category: "suspension",
-    discount: "10% OFF",
-    brand: "Monroe",
-  },
-  {
-    id: 4,
-    name: "LED Headlight Assembly",
-    price: "$299.99",
-    image: "/spare-parts/head-light.jpg",
-    category: "electrical",
-    badge: "Premium",
-    brand: "Denso",
-  },
-  {
-    id: 5,
-    name: "Front Bumper Cover",
-    price: "$189.99",
-    image: "/spare-parts/radiator.png",
-    category: "body",
-    brand: "OEM",
-  },
-  {
-    id: 6,
-    name: "Leather Seat Covers",
-    price: "$129.99",
-    image: "/spare-parts/custom-seats-covers.png",
-    category: "interior",
-    badge: "Limited Stock",
-    brand: "OEM",
-  },
-  {
-    id: 7,
-    name: "Spark Plug Set",
-    price: "$49.99",
-    image: "/spare-parts/spark-plug-set.png",
-    category: "engine",
-    brand: "Denso",
-  },
-  {
-    id: 8,
-    name: "Brake Rotors (Pair)",
-    price: "$119.99",
-    image: "/spare-parts/brake-rotors-paired.png",
-    category: "brakes",
-    discount: "20% OFF",
-    brand: "Brembo",
-  },
-];
+  await connectToDB();
 
-// Sample brands data
-const brands = ["OEM", "Bosch", "Denso", "Brembo", "Monroe"];
+  // Fetch paginated spare parts from DB
+  const parts = await SparePart.find()
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .lean();
 
-export default function SparePartsPage() {
-  return <SpareParts categories={categories} parts={parts} brands={brands} />;
+  const totalParts = await SparePart.countDocuments();
+  const totalPages = Math.ceil(totalParts / limit);
+
+  // Optional: derive categories & brands from fetched parts dynamically, or keep static
+  // Here, keeping your static categories and brands for now:
+  const categories = [
+    { id: "engine", name: "Engine Parts" },
+    { id: "brakes", name: "Brake System" },
+    { id: "suspension", name: "Suspension" },
+    { id: "electrical", name: "Electrical" },
+    { id: "body", name: "Body Parts" },
+    { id: "interior", name: "Interior" },
+  ];
+
+  const brands = ["OEM", "Bosch", "Denso", "Brembo", "Monroe"];
+
+  return (
+    <div>
+      <SpareParts categories={categories} parts={parts} brands={brands} />
+
+      <div className="container mx-auto px-4 py-4 flex justify-center gap-4">
+        {page > 1 && (
+          <a href={`/spareparts?page=${page - 1}`} className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+            Previous
+          </a>
+        )}
+        {page < totalPages && (
+          <a href={`/spareparts?page=${page + 1}`} className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition">
+            Next
+          </a>
+        )}
+      </div>
+    </div>
+  );
 }

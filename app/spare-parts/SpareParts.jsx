@@ -83,13 +83,13 @@ export default function SpareParts({ categories, parts, brands }) {
                     {parts
                       .filter((part) => {
                         if (tab === "all") return true;
-                        if (tab === "featured") return part.badge === "Premium" || part.discount;
-                        if (tab === "bestsellers") return part.badge === "Best Seller";
-                        if (tab === "new") return part.badge === "New Arrival";
+                        if (tab === "featured") return part.isFeatured || !!part.discount;
+                        if (tab === "bestsellers") return part.isBestSeller;
+                        if (tab === "new") return part.isNewArrival;
                         return false;
                       })
                       .map((part) => (
-                        <PartCard key={part.id} part={part} />
+                        <PartCard key={part._id} part={part} />
                       ))}
                   </motion.div>
                 </TabsContent>
@@ -169,11 +169,17 @@ function PartCard({ part }) {
             fill
             className="object-cover"
           />
-          {part.badge && (
-            <Badge className="absolute top-2 right-2 bg-white">{part.badge}</Badge>
+          {part.isFeatured && (
+            <Badge className="absolute top-2 right-2 bg-blue-500">Featured</Badge>
+          )}
+          {part.isBestSeller && (
+            <Badge className="absolute top-2 right-2 bg-yellow-400">Best Seller</Badge>
+          )}
+          {part.isNewArrival && (
+            <Badge className="absolute top-2 right-2 bg-green-400">New Arrival</Badge>
           )}
           {part.discount && (
-            <Badge className="absolute top-2 left-2 bg-green-400">{part.discount}</Badge>
+            <Badge className="absolute top-2 left-2 bg-red-400">{part.discount}</Badge>
           )}
         </div>
         <CardContent className="p-4">

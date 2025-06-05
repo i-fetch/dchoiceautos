@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/components/SideBar/SideBar';
 import { motion } from 'framer-motion';
 
 const DashboardLayout = ({ children, onLogout }) => {

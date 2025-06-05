@@ -75,7 +75,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
-                <span className="text-slate-300">info@autoelite.com</span>
+                <span className="text-slate-300">info@Dchoice.com</span>
               </li>
             </ul>
           </div>
@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>© {new Date().getFullYear()} AutoElite. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dchoice. All rights reserved.</p>
         </div>
       </div>
     </footer>

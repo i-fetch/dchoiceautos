@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "AutoElite - Premium Cars & Parts",
+  title: "Dchoice - Premium Cars & Parts",
   description: "Your one-stop destination for premium cars, spare parts, and reliable shipping services.",
 };
 
