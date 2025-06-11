@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { addSparePart, updateSparePart, deleteSparePart } from '@/controllers/UpdateSpareParts';
+import { addSparePart, updateSparePart, deleteSparePart } from '@/Controllers/UpdateSpareParts';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
