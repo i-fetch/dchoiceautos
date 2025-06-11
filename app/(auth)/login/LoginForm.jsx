@@ -7,13 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
 import { Mail, Lock } from 'lucide-react';
-import Link from 'next/link';
 import { signIn } from 'next-auth/react';
+import { toast } from 'sonner';
 
 const LoginForm = () => {
-  const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
