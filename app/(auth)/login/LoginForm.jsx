@@ -105,14 +105,14 @@ const LoginForm = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <motion.div variants={fieldVariants}>
-                <Label htmlFor="email" className="text-muted-foreground">Email</Label>
+                <Label htmlFor="email" className="text-slate-700 dark:text-slate-200">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-300" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="autoparts@gmail.com"
-                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
+                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
@@ -124,14 +124,14 @@ const LoginForm = () => {
               </motion.div>
 
               <motion.div variants={fieldVariants}>
-                <Label htmlFor="password" className="text-muted-foreground">Password</Label>
+                <Label htmlFor="password" className="text-slate-700 dark:text-slate-200">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-300" />
                   <Input
                     id="password"
                     type="password"
                     placeholder="thegoodstuff"
-                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
+                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
@@ -141,7 +141,6 @@ const LoginForm = () => {
                   <p className="text-sm text-destructive mt-1">{errors.password}</p>
                 )}
               </motion.div>
-
 
               <motion.div variants={fieldVariants}>
                 <Button type="submit" className="w-full bg-primary" disabled={loading}>
