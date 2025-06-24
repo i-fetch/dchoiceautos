@@ -112,7 +112,7 @@ const LoginForm = () => {
                     id="email"
                     type="email"
                     placeholder="autoparts@gmail.com"
-                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-black dark:placeholder:text-black"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
@@ -131,7 +131,7 @@ const LoginForm = () => {
                     id="password"
                     type="password"
                     placeholder="thegoodstuff"
-                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="pl-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-black dark:placeholder:text-black"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
