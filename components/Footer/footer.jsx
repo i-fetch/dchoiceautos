@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">
-              Auto<span className="text-primary">Elite</span>
+              D<span className="text-primary">Choic3auto</span>
             </h3>
             <p className="text-slate-300 mb-4">
               Your one-stop destination for premium cars, spare parts, and reliable shipping services.
@@ -67,7 +67,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-primary mr-2 mt-0.5" />
-                <span className="text-slate-300">123 Auto Boulevard, New York, NY 10001</span>
+                <span className="text-slate-300">United State, California</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-primary mr-2" />
@@ -75,7 +75,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
-                <span className="text-slate-300">info@autoelite.com</span>
+                <span className="text-slate-300">info@d-choic3auto.com</span>
               </li>
             </ul>
           </div>

@@ -50,7 +50,7 @@ export default function Navbar() {
           </Sheet>
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold text-xl md:text-2xl">
-              Auto<span className="text-primary">Elite</span>
+              D<span className="text-primary">Choic3auto</span>
             </span>
           </Link>
         </div>
