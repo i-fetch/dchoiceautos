@@ -98,7 +98,9 @@ const LoginForm = () => {
       >
         <Card className="bg-slate-100 dark:bg-slate-800">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center text-white">Login</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center text-slate-900 dark:text-white">
+              Login
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -140,7 +142,7 @@ const LoginForm = () => {
                 )}
               </motion.div>
 
-             
+
               <motion.div variants={fieldVariants}>
                 <Button type="submit" className="w-full bg-primary" disabled={loading}>
                   {loading ? 'Logging in...' : 'Login'}
@@ -148,7 +150,7 @@ const LoginForm = () => {
               </motion.div>
             </form>
 
-          
+
           </CardContent>
         </Card>
       </motion.div>
