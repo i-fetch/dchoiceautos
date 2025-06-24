@@ -7,12 +7,11 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Filter, Star, ChevronDown } from "lucide-react";
 import ViewDetailsButton from "@/components/ViewDetails";
 
-export default function CarPage({ cars }) {
-  // Animation variants
+export default function CarPage({ cars = [] }) {
   const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -20,10 +19,7 @@ export default function CarPage({ cars }) {
 
   const gridVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
   const cardVariants = {
@@ -31,13 +27,14 @@ export default function CarPage({ cars }) {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  // Refs and inView hooks
   const heroRef = useRef(null);
   const catalogRef = useRef(null);
   const ctaRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, margin: "-50px" });
   const isCatalogInView = useInView(catalogRef, { once: true, margin: "-50px" });
   const isCtaInView = useInView(ctaRef, { once: true, margin: "-50px" });
+
+  const categories = ["sedan", "suv", "ute", "ev"];
 
   return (
     <div>
@@ -54,13 +51,12 @@ export default function CarPage({ cars }) {
             Explore Our Premium Cars
           </motion.h1>
           <motion.p variants={sectionVariants} className="text-lg text-gray-300 max-w-2xl">
-            Discover our extensive collection of luxury vehicles, from elegant sedans to powerful SUVs and sporty
-            coupes.
+            Discover our extensive collection of luxury vehicles, from elegant sedans to powerful SUVs and sporty coupes.
           </motion.p>
         </div>
       </motion.section>
 
-      {/* Cars Catalog */}
+      {/* Catalog Section */}
       <motion.section
         ref={catalogRef}
         variants={sectionVariants}
@@ -69,7 +65,6 @@ export default function CarPage({ cars }) {
         className="py-12 md:py-16"
       >
         <div className="container mx-auto px-4">
-          {/* Filters and Sorting */}
           <motion.div
             variants={sectionVariants}
             className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4"
@@ -89,16 +84,18 @@ export default function CarPage({ cars }) {
             </div>
           </motion.div>
 
-          {/* Car Categories */}
+          {/* Tabs */}
           <Tabs defaultValue="all" className="w-full mb-8">
             <TabsList className="grid w-full max-w-lg mx-auto grid-cols-5">
               <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="sedan">Sedan</TabsTrigger>
-              <TabsTrigger value="suv">SUV</TabsTrigger>
-              <TabsTrigger value="ute">Ute</TabsTrigger>
-              <TabsTrigger value="ev">EV</TabsTrigger>
+              {categories.map((cat) => (
+                <TabsTrigger key={cat} value={cat}>
+                  {cat.toUpperCase()}
+                </TabsTrigger>
+              ))}
             </TabsList>
 
+            {/* All Cars */}
             <TabsContent value="all" className="mt-6">
               <motion.div
                 variants={gridVariants}
@@ -106,13 +103,20 @@ export default function CarPage({ cars }) {
                 animate={isCatalogInView ? "visible" : "hidden"}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                {cars.map((car) => (
-                  <CarCard key={car.id} car={car} variants={cardVariants} />
-                ))}
+                {cars.length ? (
+                  cars.map((car) => (
+                    <CarCard key={car._id} car={car} variants={cardVariants} />
+                  ))
+                ) : (
+                  <p className="col-span-full text-center text-muted-foreground">
+                    No cars available at the moment.
+                  </p>
+                )}
               </motion.div>
             </TabsContent>
 
-            {["sedan", "suv", "ute", "ev"].map((category) => (
+            {/* Filtered by Category */}
+            {categories.map((category) => (
               <TabsContent key={category} value={category} className="mt-6">
                 <motion.div
                   variants={gridVariants}
@@ -120,11 +124,17 @@ export default function CarPage({ cars }) {
                   animate={isCatalogInView ? "visible" : "hidden"}
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                  {cars
-                    .filter((car) => car.category === category)
-                    .map((car) => (
-                      <CarCard key={car.id} car={car} variants={cardVariants} />
-                    ))}
+                  {cars.filter((car) => car.category?.toLowerCase() === category).length ? (
+                    cars
+                      .filter((car) => car.category?.toLowerCase() === category)
+                      .map((car) => (
+                        <CarCard key={car._id} car={car} variants={cardVariants} />
+                      ))
+                  ) : (
+                    <p className="col-span-full text-center text-muted-foreground">
+                      No {category.toUpperCase()} cars available.
+                    </p>
+                  )}
                 </motion.div>
               </TabsContent>
             ))}
@@ -132,7 +142,7 @@ export default function CarPage({ cars }) {
         </div>
       </motion.section>
 
-      {/* CTA Section */}
+      {/* Call-to-Action Section */}
       <motion.section
         ref={ctaRef}
         variants={sectionVariants}
@@ -175,7 +185,7 @@ function CarCard({ car, variants }) {
           {car.badge && <Badge className="absolute top-2 right-2 bg-primary">{car.badge}</Badge>}
         </div>
         <CardContent className="p-6">
-          {car.rating !== undefined && (
+          {typeof car.rating === "number" && (
             <div className="flex items-center mb-2">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -193,8 +203,12 @@ function CarCard({ car, variants }) {
             </div>
           )}
           <h3 className="text-xl font-bold mb-2">{car.name}</h3>
-          <p className="text-primary font-semibold text-lg mb-3">{car.price}</p>
-          {car.features && (
+<p className="text-primary font-semibold text-lg mb-3">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "NGN",
+            }).format(car.price)}
+          </p>          {car.features && (
             <div className="grid grid-cols-2 gap-2 mb-4">
               {car.features.map((feature, index) => (
                 <span
