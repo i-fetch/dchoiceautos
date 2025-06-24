@@ -111,7 +111,7 @@ const LoginForm = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="autoparts@gmail.com"
                     className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -130,7 +130,7 @@ const LoginForm = () => {
                   <Input
                     id="password"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="thegoodstuff"
                     className="pl-10 bg-slate-200 dark:bg-slate-700 text-white"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
