@@ -1,10 +1,11 @@
 'use client';
 
+import React from 'react';
 import Sidebar from '@/components/SideBar/SideBar';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function Dashboard({ user, onLogout }) {
+const Dashboardnow = ({ user, onLogout }) => {
     return (
         <div className="min-h-screen bg-slate-900 flex">
             <Sidebar onLogout={onLogout} />
@@ -32,4 +33,6 @@ export default function Dashboard({ user, onLogout }) {
             </main>
         </div>
     );
-}
+};
+
+export default Dashboardnow;

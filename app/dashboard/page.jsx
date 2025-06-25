@@ -1,7 +1,7 @@
 
 import { redirect } from 'next/navigation';
 import { getUser } from '@/lib/getUser';
-import Dashboard from './Dashboard';
+import Dashboardnow from './Dashboard';
 
 export default async function DashboardPage() {
   const user = await getUser();
@@ -10,5 +10,5 @@ export default async function DashboardPage() {
     redirect('/login');
   }
 
-  return <Dashboard user={user} onLogout={() => redirect('/login')} />;
+  return <Dashboardnow user={user} onLogout={() => redirect('/login')} />;
 }
