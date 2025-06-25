@@ -64,31 +64,40 @@ export default function CarForm({ car }) {
   };
 
   return (
-    <Card className="bg-white dark:bg-slate-900 shadow-md rounded-2xl">
-      <CardHeader>
-        <CardTitle className="text-3xl font-semibold text-slate-800 dark:text-white">
-          {car ? "Edit Car" : "Add Car"}
+    <Card className="bg-gradient-to-br from-white via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-[1.01]">
+      <CardHeader className="pb-0">
+        <CardTitle className="text-3xl font-bold text-primary dark:text-white flex items-center gap-2">
+          {car ? (
+            <>
+              <span role="img" aria-label="edit">🚗✏️</span> Edit Car
+            </>
+          ) : (
+            <>
+              <span role="img" aria-label="add">🚗➕</span> Add Car
+            </>
+          )}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form
           ref={formRef}
           action={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4"
         >
-          <div className="space-y-2">
-            <Label htmlFor="name">Car Name</Label>
+          <div className="space-y-3">
+            <Label htmlFor="name" className="font-semibold">Car Name</Label>
             <Input
               id="name"
               name="name"
               defaultValue={car?.name || ""}
               required
-              className="focus:ring-2 focus:ring-primary transition"
+              className="focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. Tesla Model S"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="price">Price</Label>
+          <div className="space-y-3">
+            <Label htmlFor="price" className="font-semibold">Price ($)</Label>
             <Input
               id="price"
               name="price"
@@ -96,34 +105,37 @@ export default function CarForm({ car }) {
               step="0.01"
               defaultValue={car?.price || ""}
               required
-              className="focus:ring-2 focus:ring-primary transition"
+              className="focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. 79999"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="badge">Badge</Label>
+          <div className="space-y-3">
+            <Label htmlFor="badge" className="font-semibold">Badge</Label>
             <Input
               id="badge"
               name="badge"
               defaultValue={car?.badge || ""}
               required
-              className="focus:ring-2 focus:ring-primary transition"
+              className="focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. New, Featured"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="category">Category</Label>
+          <div className="space-y-3">
+            <Label htmlFor="category" className="font-semibold">Category</Label>
             <Input
               id="category"
               name="category"
               defaultValue={car?.category || ""}
               required
-              className="focus:ring-2 focus:ring-primary transition"
+              className="focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. Sedan, SUV"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="rating">Rating</Label>
+          <div className="space-y-3">
+            <Label htmlFor="rating" className="font-semibold">Rating</Label>
             <Input
               id="rating"
               name="rating"
@@ -133,34 +145,42 @@ export default function CarForm({ car }) {
               max="5"
               defaultValue={car?.rating || ""}
               required
-              className="focus:ring-2 focus:ring-primary transition"
+              className="focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. 4.8"
             />
           </div>
 
-          <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="features">Features (comma separated)</Label>
+          <div className="space-y-3 md:col-span-2">
+            <Label htmlFor="features" className="font-semibold">Features <span className="text-xs text-muted">(comma separated)</span></Label>
             <Textarea
               id="features"
               name="features"
               defaultValue={car?.features?.join(", ") || ""}
-              className="resize-none h-24 focus:ring-2 focus:ring-primary transition"
+              className="resize-none h-24 focus:ring-2 focus:ring-primary/70 transition rounded-lg"
+              placeholder="e.g. Sunroof, Leather Seats, Bluetooth"
             />
           </div>
 
-          <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="image">Car Image</Label>
+          <div className="space-y-3 md:col-span-2">
+            <Label htmlFor="image" className="font-semibold">Car Image</Label>
             <Input
               id="image"
               name="image"
               type="file"
               accept="image/*"
-              className="file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-primary file:text-white hover:file:bg-primary/90 transition"
+              className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white hover:file:bg-primary/90 transition"
             />
           </div>
 
-          <div className="flex gap-4 md:col-span-2">
-            <Button type="submit" disabled={isSubmitting}>
-              {car ? "Update Car" : "Add Car"}
+          <div className="flex gap-4 md:col-span-2 mt-2">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-gradient-to-r from-primary to-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-primary/80 transition"
+            >
+              {isSubmitting ? (
+                <span className="animate-spin mr-2">⏳</span>
+              ) : car ? "Update Car" : "Add Car"}
             </Button>
 
             {car && (
@@ -169,22 +189,28 @@ export default function CarForm({ car }) {
                 variant="destructive"
                 onClick={handleDelete}
                 disabled={isSubmitting}
+                className="bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-red-600 hover:to-red-800 transition"
               >
-                Delete Car
+                {isSubmitting ? (
+                  <span className="animate-spin mr-2">⏳</span>
+                ) : "Delete Car"}
               </Button>
             )}
           </div>
 
-          {message && (
-            <p className="md:col-span-2 text-sm text-green-600 dark:text-green-400">
-              {message}
-            </p>
-          )}
-
-          {error && (
-            <p className="md:col-span-2 text-sm text-red-600 dark:text-red-400">
-              {error}
-            </p>
+          {(message || error) && (
+            <div className="md:col-span-2 mt-2">
+              {message && (
+                <div className="flex items-center gap-2 text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/40 rounded-lg px-4 py-2 text-sm font-medium shadow">
+                  <span role="img" aria-label="success">✅</span> {message}
+                </div>
+              )}
+              {error && (
+                <div className="flex items-center gap-2 text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-900/40 rounded-lg px-4 py-2 text-sm font-medium shadow">
+                  <span role="img" aria-label="error">❌</span> {error}
+                </div>
+              )}
+            </div>
           )}
         </form>
       </CardContent>
