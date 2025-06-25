@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import DashboardLayout from '@/components/DashboardLayout';
 
 // Import your server action (example: getCurrentUser)
-import { getUser } from '@/lib'; // Adjust path as needed
+import { getUser } from '@/lib/getUser'; // Adjust path as needed
 
 const DashboardPage = () => {
   const router = useRouter();
