@@ -1,14 +1,22 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/SideBar/SideBar';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const Dashboardnow = ({ user, onLogout }) => {
+const Dashboardnow = ({ user }) => {
+    const router = useRouter();
+
+    const handleLogout = () => {
+        // perform logout logic here if needed
+        router.push('/login');
+    };
+
     return (
         <div className="min-h-screen bg-slate-900 flex">
-            <Sidebar onLogout={onLogout} />
+            <Sidebar onLogout={handleLogout} />
             <main className="flex-1 p-4 md:p-8 md:ml-64" aria-label="Main content area">
                 <motion.div
                     className="max-w-7xl mx-auto space-y-8"
