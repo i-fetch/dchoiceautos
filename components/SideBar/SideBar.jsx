@@ -25,7 +25,7 @@ const Sidebar = ({ onLogout }) => {
         aria-label="Sidebar Navigation"
       >
         <div className="flex items-center mb-6">
-          <h2 className="text-2xl font-bold text-white">Dchoice</h2>
+          <h2 className="text-2xl font-bold text-white">Dchoiceautos</h2>
         </div>
         <nav className="space-y-2" role="navigation">
           {sidebarItems.map((item, index) =>
@@ -69,7 +69,7 @@ const Sidebar = ({ onLogout }) => {
         </SheetTrigger>
         <SheetContent side="left" className="bg-slate-100 dark:bg-slate-800 w-64 p-4">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Dchoice</h2>
+            <h2 className="text-2xl font-bold text-white">Dchoiceautos</h2>
             <Button
               variant="ghost"
               size="icon"

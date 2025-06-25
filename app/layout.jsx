@@ -8,7 +8,7 @@ import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Dchoice - Premium Cars & Parts",
+  title: "Dchoiceautos - Premium Cars & Parts",
   description: "Your one-stop destination for premium cars, spare parts, and reliable shipping services.",
   icons: {
     icon: "/autos-2.jpg",

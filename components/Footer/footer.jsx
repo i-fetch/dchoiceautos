@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">
-              D<span className="text-primary">Dchoiceautos</span>
+              D<span className="text-primary">Dchoiceautosautos</span>
             </h3>
             <p className="text-slate-300 mb-4">
               Your one-stop destination for premium cars, spare parts, and reliable shipping services.
@@ -76,7 +76,7 @@ export default function Footer() {
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
 
-                <span className="text-slate-300">info@Dchoice.com</span>
+                <span className="text-slate-300">info@Dchoiceautos.com</span>
               </li>
             </ul>
           </div>
@@ -96,7 +96,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>© {new Date().getFullYear()} Dchoice. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dchoiceautos. All rights reserved.</p>
         </div>
       </div>
     </footer>

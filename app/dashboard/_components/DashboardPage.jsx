@@ -76,7 +76,7 @@
 //           transition={{ duration: 0.6 }}
 //         >
 //           <div className="flex items-center mb-6">
-//             <h2 className="text-2xl font-bold text-white">Dchoice</h2>
+//             <h2 className="text-2xl font-bold text-white">Dchoiceautos</h2>
 //           </div>
 //           <nav className="space-y-2">
 //             {sidebarItems.map((item, index) => (
@@ -106,7 +106,7 @@
 //           </SheetTrigger>
 //           <SheetContent side="left" className="bg-slate-100 dark:bg-slate-800 w-64 p-4">
 //             <div className="flex items-center justify-between mb-6">
-//               <h2 className="text-2xl font-bold text-white">Dchoice</h2>
+//               <h2 className="text-2xl font-bold text-white">Dchoiceautos</h2>
 //               <Button
 //                 variant="ghost"
 //                 size="icon"

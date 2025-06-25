@@ -168,7 +168,7 @@ const Home = () => {
             viewport={{ once: true }}
             variants={fadeUpVariant}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Dchoice</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Dchoiceautos</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We are committed to providing exceptional service and products to our customers
             </p>
