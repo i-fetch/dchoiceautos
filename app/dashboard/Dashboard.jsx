@@ -15,7 +15,7 @@ const Dashboardnow = ({ user }) => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 flex">
+        <div className="min-h-screen bg-background flex">
             <Sidebar onLogout={handleLogout} />
             <main className="flex-1 p-4 md:p-8 md:ml-64" aria-label="Main content area">
                 <motion.div
@@ -24,9 +24,9 @@ const Dashboardnow = ({ user }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <Card className="bg-slate-100 dark:bg-slate-800">
+                    <Card className="bg-background dark:bg-slate-800 border border-border shadow">
                         <CardHeader>
-                            <CardTitle className="text-2xl font-bold text-white">
+                            <CardTitle className="text-2xl font-bold text-foreground">
                                 Welcome, {user?.name?.split(' ')[0] || 'User'}!
                             </CardTitle>
                         </CardHeader>
