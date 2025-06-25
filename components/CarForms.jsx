@@ -65,6 +65,15 @@ export default function CarForm({ car }) {
 
   return (
     <Card className="bg-gradient-to-br from-white via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-[1.01]">
+      {/* Loading overlay */}
+      {isSubmitting && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 rounded-3xl">
+          <div className="flex flex-col items-center gap-2">
+            <span className="animate-spin text-4xl">⏳</span>
+            <span className="text-white font-semibold">Processing...</span>
+          </div>
+        </div>
+      )}
       <CardHeader className="pb-0">
         <CardTitle className="text-3xl font-bold text-primary dark:text-white flex items-center gap-2">
           {car ? (
