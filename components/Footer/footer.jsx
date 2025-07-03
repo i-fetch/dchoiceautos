@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">
-              D<span className="text-primary">Dchoiceautos</span>
+              D<span className="text-primary">Dchoic3autos</span>
             </h3>
             <p className="text-slate-300 mb-4">
               Your one-stop destination for premium cars, spare parts, and reliable shipping services.
@@ -71,12 +71,12 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-primary mr-2" />
-                <span className="text-slate-300">+1 (800) 123-4567</span>
+                <span className="text-slate-300">+15106168406</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
 
-                <span className="text-slate-300">info@Dchoiceautos.com</span>
+                <span className="text-slate-300">dchoic3autos@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -96,7 +96,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>© {new Date().getFullYear()} Dchoiceautos. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dchoic3autos. All rights reserved.</p>
         </div>
       </div>
     </footer>

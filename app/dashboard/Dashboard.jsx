@@ -26,7 +26,7 @@ const Dashboardnow = ({ user }) => {
                 >
                     <Card className="bg-background dark:bg-slate-800 border border-border shadow">
                         <CardHeader>
-                            <CardTitle className="text-2xl font-bold text-foreground">
+                                                           uk,k                        <CardTitle className="text-2xl font-bold text-foreground">
                                 Welcome, {user?.name?.split(' ')[0] || 'User'}!
                             </CardTitle>
                         </CardHeader>

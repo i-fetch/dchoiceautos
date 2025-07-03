@@ -73,7 +73,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-bold mb-2">Phone</h3>
                 <p className="text-muted-foreground mb-2">Call us directly</p>
                 <a href="tel:+18001234567" className="text-primary hover:underline">
-                  +1 (800) 123-4567
+                  +15106168406
                 </a>
               </CardContent>
             </Card>
@@ -85,8 +85,8 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-lg font-bold mb-2">Email</h3>
                 <p className="text-muted-foreground mb-2">Send us an email</p>
-                <a href="mailto:info@Dchoiceautos.com" className="text-primary hover:underline">
-                  info@Dchoiceautos.com
+                <a href="mailto:dchoic3autos@gmail.com" className="text-primary hover:underline">
+                  dchoic3autos@gmail.com
                 </a>
               </CardContent>
             </Card>
