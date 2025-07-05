@@ -6,8 +6,8 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "luci
 export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white">
-      <div className="container mx-auto py-14 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">
               D<span className="text-primary">choic3autos</span>
@@ -75,7 +75,6 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
-
                 <span className="text-slate-300">Dchoic3@outlook.com</span>
               </li>
             </ul>
@@ -83,7 +82,9 @@ export default function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-slate-300 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+            <p className="text-slate-300 mb-4">
+              Subscribe to our newsletter for the latest updates and offers.
+            </p>
             <div className="flex flex-col space-y-2">
               <Input
                 type="email"
