@@ -70,7 +70,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center mr-4">
             <Phone className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm font-medium">+1 (800) 123-4567</span>
+            <span className="text-sm font-medium">+15106168406</span>
           </div>
           {/* <Link href="/cart">
             <Button variant="ghost" size="icon" aria-label="Shopping Cart">
