@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">
-              D<span className="text-primary">Dchoic3autos</span>
+              D<span className="text-primary">choic3autos</span>
             </h3>
             <p className="text-slate-300 mb-4">
               Your one-stop destination for premium cars, spare parts, and reliable shipping services.
